@@ -37,7 +37,7 @@ The term ``computational thinking'' has been widely used since \cite{Wing2006}
 introduced it more than a decade ago.  Unfortunately, it has been used in so
 many different ways that no one really knows what it means.
 
-\rulemajor{It's all just data.}
+\rulemajor{It's all just data, but data is meaningless on its own.}
 
 First, and most importantly, it's all just data.  Shopping lists, email,
 pictures of far-off galaxies: inside the computer, they're all just ones and
@@ -46,18 +46,16 @@ of modern computing is built on.  The source code for a program is just a bunch
 of text files, no different from a thesis.  Once that text is compiled or loaded
 into memory, it's just bytes too, and pushing those bytes around is no different
 from correcting a typo in an address list or changing the color of a pixel in an
-image file.  If you understand this—if you understand that programs are just
-another kind of data—then every bit of programming you do will be easier.
+image file.  If you understand this---if you understand that programs are just
+another kind of data---then every bit of programming you do will be easier.
 
-\rulemajor{Data doesn't mean anything on its own.}
-
-The second idea is a complement to the first: data doesn't mean anything on its
-own---it has to be interpreted.  The bits 01100100011000010111100001100001 are
-simultaneously the word ``data'', the integer 1,684,108,385, the floating-point
-number 1.6635613602263159e+22, a bluish-gray pixel that's slightly transparent,
-a medium-loud sound sample with slightly higher volume in the left channel, and
-an instruction to copy the content of register 100 to a location in memory
-that's 97 bytes past the address currently stored in register 116.
+The complement to this is that data doesn't mean anything on its own---it has to
+be interpreted.  The bits 01100100011000010111100001100001 are simultaneously
+the word ``data'', the integer 1,684,108,385, the floating-point number
+1.6635613602263159e+22, a bluish-gray pixel that's slightly transparent, a
+medium-loud sound sample with slightly higher volume in the left channel, and an
+instruction to copy the content of register 100 to a location in memory that's
+97 bytes past the address currently stored in register 116.
 
 The reason for this is that machines don't understand; they obey.  If you look
 at this image, you can't help but see the word ``data'':
@@ -71,12 +69,20 @@ instructions for the computer's CPU, and if those instructions happen to make up
 a program for detecting shapes in images and matching those shapes with letters
 in the alphabet, then the computer may very well output ``data'', but \emph{it
   doesn't understand}.  Calling a variable ``temperature'' doesn't mean the
-computer will store a temperature in it—it would do exactly the same thing if
+computer will store a temperature in it---it would do exactly the same thing if
 the variable was called ``pressure'' or ``frankenstein'' or ``a7''.
+
+\rulemajor{The street finds its own uses for things.}
+
+The second rule is that every decision about what data to collect, who to share
+it with, how to interpret it, and how to use those interpretations necessarily
+and unavoidably furthers someone's interests.
+
+FIXME: CITE Gibson ``Burning Chrome''
 
 \rulemajor{Programming is about creating and composing abstractions.}
 
-This brings us to the third idea: programming is about creating and composing
+This brings us to the third rule: programming is about creating and composing
 abstractions.  Our brains can only keep track of a few things at once, so if we
 want to understand something, we have to stuff the details into boxes and put
 labels on them like ``find the maximum'' or ``patient record''.
@@ -99,14 +105,12 @@ tricks here and there to make them smaller or faster, but somebody (maybe you)
 is going to have to figure it out again later, and really, nobody likes being
 tricked.
 
-\rulemajor{Every redundancy is an abstraction trying to be born.}
-
-FIXME: EXPLAIN (fourth rule).
+FIXME: Every redundancy is an abstraction trying to be born.
 
 \rulemajor{Models are for computers, and views are for people.}
 
-Another implication of the abstraction rule is important enough to be our fifth
-principle: models are for computers, and views are for people.  A model is a
+Another implication of the abstraction rule is important enough to be its own
+rule: models are for computers, and views are for people.  A model is a
 representation of something that is easy for a computer to operate on; a view is
 a way of displaying part or all of that model that human beings can understand.
 For example, an HTML document consists of elements with attributes that contain
@@ -139,16 +143,16 @@ the computer.
 
 We said earlier that we only want to care about how something is implemented
 when things go wrong or when we need to improve its performance.  Big idea
-number six is about things going wrong, and can be summed up by saying that
-\emph{paranoia makes us productive}.  The best way—in fact, the only way—to
+number five is about things going wrong, and can be summed up by saying that
+\emph{paranoia makes us productive}.  The best way---in fact, the only way---to
 improve productivity is to improve quality, and this starts before we write the
-first line of code.  ``I want to count all the stars in this photograph'' is easy
-to say, but what does it actually \emph{mean}?  What constitutes a star?  When
-do you decide that a lumpy blob of pixels is two stars rather than one, or three
-instead of two?  Every program embodies decisions about questions like these,
-even if you don't realize that there was a question and that you made a choice.
-The sooner we worry about this, the less time we'll waste building the wrong
-thing.
+first line of code.  ``I want to count all the stars in this photograph'' is
+easy to say, but what does it actually \emph{mean}?  What constitutes a star?
+When do you decide that a lumpy blob of pixels is two stars rather than one, or
+three instead of two?  Every program embodies decisions about questions like
+these, even if you don't realize that there was a question and that you made a
+choice.  The sooner we worry about this, the less time we'll waste building the
+wrong thing.
 
 Of course, we don't stop worrying once we've typed our code in.  We check that
 data is formatted properly to protect ourselves against ``garbage in, garbage
@@ -169,19 +173,30 @@ next time, and have more time to think about things that machines \emph{can't}
 do for us.  And it's not just a one-time saving: if we automate things well,
 that extra time is ours over and over again.
 
+\rulemajor{We can't break what we don't change.}
+
+FIXME: rule 6 about immutable data structures being easier to understand; also
+refer to library re-use (code is just data); include discussion of
+pass-by-reference and pass-by-value.
+
+\rulemajor{Keep your bits close, and your frequently-used bits closer.}
+
+FIXME: rule 7 about locality and caching; refer back to pass-by-reference for
+the web.
+
 \rulemajor{Better algorithms are better than better hardware.}
 
-Big idea number seven is that we can think about how fast the algorithms embodied
-in programs are, and that better algorithms are better than better hardware.
-One of the greatest mathematical advances of the Twentieth Century was the idea
-of \emph{algorithmic complexity}, and its practical implications shape
-everything we do with computers, whether we realize it or not.  The basic idea
-is that we can estimate how many operations an algorithm will do, or how much
-memory it requires, as a function of the size of the problem we're trying to
-solve.  It turns out that some algorithms slow down gently as their inputs get
-larger, while others slow down so much that even if the whole universe was one
-large computer, it couldn't solve any problem big enough to be interesting.
-Faster chips help—a lot—but the real key to speed is to focus on what we're
+Big idea number eight is that we can think about how fast the algorithms
+embodied in programs are, and that better algorithms are better than better
+hardware.  One of the greatest mathematical advances of the Twentieth Century
+was the idea of \emph{algorithmic complexity}, and its practical implications
+shape everything we do with computers, whether we realize it or not.  The basic
+idea is that we can estimate how many operations an algorithm will do, or how
+much memory it requires, as a function of the size of the problem we're trying
+to solve.  It turns out that some algorithms slow down gently as their inputs
+get larger, while others slow down so much that even if the whole universe was
+one large computer, it couldn't solve any problem big enough to be interesting.
+Faster chips help---a lot---but the real key to speed is to focus on what we're
 doing, not what we're doing it with.
 
 But algorithms are nothing without data structures to operate on, just as data
@@ -191,20 +206,11 @@ and so on.  Knowing the syntax of this language or the API of that library is
 useful, but good programmers know their data structures and algorithms the way a
 plumber knows pipes or a musician knows scales.
 
-FIXME: trade space for time for precision (hashing)
+FIXME: trade space for time for precision (e.g., hashing)
 
-\rulemajor{Pass by reference, but appear to pass by value.}
+\rulemajor{ANOTHER}
 
-FIXME: RULE (by reference for efficiency and updates, by value because
-immutability is easier to understand.
-
-\rulemajor{The street finds its own (mis-)uses for technology (and data).}
-
-The eighth rule is that every decision about what data to collect, who to share
-it with, how to analyze it, and how to use the results of those analyses
-necessarily and unavoidably furthers someone's interests.
-
-FIXME: CITE Gibson
+FIXME: need a ninth rule.
 
 \rulemajor{The tool shapes the hand.}
 
