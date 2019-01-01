@@ -1,0 +1,9 @@
+*~
+*.aux
+*.bak
+*.bbl
+*.blg
+*.dvi
+*.log
+*.out
+rules.pdf
