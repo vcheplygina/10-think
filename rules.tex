@@ -2,7 +2,6 @@
 \include{settings}
 
 %% Define per-paper macros.
-\newcommand{\withurl}[2]{{#1}\footnote{\texttt{#2}}}
 \newcommand{\rulemajor}[1]{\section{#1}}
 \begin{document}
 \vspace*{0.2in}
@@ -23,44 +22,59 @@
 
 \section*{Abstract}
 
-FIXME: ABSTRACT
+We describe ten characteristic ways in which programmers view the world that are
+often useful in other contexts.
 
 \section*{Author Summary}
 
-FIXME: SUMMARY
+The term ``computational thinking'' is widely used, but there is little
+consensus on what it actually encompasses.  Experienced programmers, on the
+other hand, tend to think about problems in similar ways, and understanding
+these ways can help people in other domains see their own fields with fresh
+eyes.
 
 \section*{Introduction}
 
-FIXME: INTRODUCTION
-
 The term ``computational thinking'' has been widely used since \cite{Wing2006}
-introduced it more than a decade ago.  Unfortunately, it has been used in so
-many different ways that no one really knows what it means.
+introduced it more than a decade ago.  However, there is little consensus on
+what it actually encompasses.  Experienced programmers, on the other hand,
+tend to think about problems in similar ways, and understanding those ways
+can help people in other domains---such as scientific research---see their
+own fields with fresh eyes.
 
-\rulemajor{It's all just data, but data is meaningless on its own.}
+\subsection*{Acknowledgments}
 
-First, and most importantly, it's all just data.  Shopping lists, email,
-pictures of far-off galaxies: inside the computer, they're all just ones and
-zeroes.  Even programs are just data: in fact, this is the key insight that all
-of modern computing is built on.  The source code for a program is just a bunch
-of text files, no different from a thesis.  Once that text is compiled or loaded
-into memory, it's just bytes too, and pushing those bytes around is no different
-from correcting a typo in an address list or changing the color of a pixel in an
-image file.  If you understand this---if you understand that programs are just
-another kind of data---then every bit of programming you do will be easier.
+An early version of this paper was inspired by Jon Udell's essay ``Seven Ways to
+Think Like the Web'' \cite{Udel2011}.
 
-The complement to this is that data doesn't mean anything on its own---it has to
-be interpreted.  The bits 01100100011000010111100001100001 are simultaneously
-the word ``data'', the integer 1,684,108,385, the floating-point number
-1.6635613602263159e+22, a bluish-gray pixel that's slightly transparent, a
-medium-loud sound sample with slightly higher volume in the left channel, and an
-instruction to copy the content of register 100 to a location in memory that's
-97 bytes past the address currently stored in register 116.
+\rulemajor{Programs are data.}
 
-The reason for this is that machines don't understand; they obey.  If you look
-at this image, you can't help but see the word ``data'':
+First, and most importantly, everything a computer works with is just 1's and
+0's.  From email messages to pictures of far-off galaxies, it's all just bits.
 
-\includegraphics{data.png}
+This seems obvious, but one of its implications is that programs are just
+another kind of data.  This is the key insight that all of modern computing is
+built on.  The source code for a program is just a set of text files, no
+different from a thesis or a poem.  Once that text is loaded into memory, the
+instructions are just more bytes, and can be stored in data structures, passed
+around, or altered.  Almost all advanced programming techniques, from callbacks
+in JavaScript to decorators in Python and lazy evaluation in R, depend on this
+fact in one way or another.
+
+\rulemajor{Data must be interpreted.}
+
+The complement to the first rule is that data doesn't mean anything on its
+own---it has to be interpreted.  The bits 01100100011000010111100001100001 are
+simultaneously the word ``data'', the integer 1,684,108,385, the floating-point
+number 1.6635613602263159e+22, a bluish-gray pixel that's slightly transparent,
+a medium-loud sound sample with slightly higher volume in the left channel, and
+an instruction to multiply the value on the top of the stack by the value
+beneath it and store the result in a particular location in memory.
+
+A corollary is that machines don't understand: they only obey.  If you look at
+this image, you see the word ``data'':
+
+\includegraphics[width=5.0cm]{data.png}
 
 A machine doesn't; it doesn't even see four blobs of blue pixels on a gray
 background, because it doesn't ``see'' anything.  The computer stores this
@@ -70,22 +84,17 @@ a program for detecting shapes in images and matching those shapes with letters
 in the alphabet, then the computer may very well output ``data'', but \emph{it
   doesn't understand}.  Calling a variable ``temperature'' doesn't mean the
 computer will store a temperature in it---it would do exactly the same thing if
-the variable was called ``pressure'' or ``frankenstein'' or ``a7''.
-
-\rulemajor{The street finds its own uses for things.}
-
-The second rule is that every decision about what data to collect, who to share
-it with, how to interpret it, and how to use those interpretations necessarily
-and unavoidably furthers someone's interests.
-
-FIXME: CITE Gibson ``Burning Chrome''
+the variable was called ``pressure'' or ``frankenstein'' or ``a7''.  Again, this
+may seem obvious, but thirty years after Pea first called it the ``superbug'',
+believing that the computer will somehow understand intent remains a common
+error \cite{Pea1986}.
 
 \rulemajor{Programming is about creating and composing abstractions.}
 
-This brings us to the third rule: programming is about creating and composing
-abstractions.  Our brains can only keep track of a few things at once, so if we
-want to understand something, we have to stuff the details into boxes and put
-labels on them like ``find the maximum'' or ``patient record''.
+Computers don't have to understand instructions in order to execute them, but we
+need to understand them in order to create them (and fix them afterward).  Our
+brains can only keep track of a handful of things at once \cite{Mill1956}, we
+have to decompose complexity into chunks, then think in terms of those chunks.
 
 One key to making abstraction work is to separate \emph{interface} and
 \emph{implementation}.  An interface is what something knows how to do: the
@@ -96,27 +105,25 @@ do our work well, we shouldn't have to care about the implementation until
 something goes wrong or we need to improve its performance.  ``Spare me the
 details'' may be rude in real life, but it's essential in programming.
 
-Another key to making abstraction work is to always choose clarity over
-cleverness.  As Brian Kernighan once said, ``{\ldots}debugging is twice as hard
-as writing a program in the first place.  So if you are as clever as you can be
-when you write it, how will you ever debug it?''  Programs are among the most
-complex things human beings have ever created; it may be tempting to use little
-tricks here and there to make them smaller or faster, but somebody (maybe you)
-is going to have to figure it out again later, and really, nobody likes being
-tricked.
-
-FIXME: Every redundancy is an abstraction trying to be born.
+One useful rule of thumb is that every pattern is an abstraction trying to be
+born.  Does your program repeatedly search an array to find the largest and
+smallest values?  Write a function called \texttt{bounds}.  Does it repeatedly
+search arbitrary data structures to find values that meet certain criteria?
+Write a generator that returns values one by one and another function that
+filters those according to some criteria.  The history of programming is in
+large part the history of people noticing patterns and then making it easier
+for programmers to work with them.
 
 \rulemajor{Models are for computers, and views are for people.}
 
 Another implication of the abstraction rule is important enough to be its own
-rule: models are for computers, and views are for people.  A model is a
-representation of something that is easy for a computer to operate on; a view is
-a way of displaying part or all of that model that human beings can understand.
-For example, an HTML document consists of elements with attributes that contain
-other elements or blocks of raw text:
+rule: create models for computers and views for people.  A \emph{model} is a
+representation of something that is easy for a computer to operate on; a
+\emph{view} is a way of displaying it that human beings can understand.  For
+example, an HTML page consists of elements that have attributes and that contain
+other elements or blocks of text:
 
-\includegraphics{modelview.png}
+\includegraphics[width=10.0cm]{modelview.png}
 
 That model can be rendered in a browser, turned into speech for someone who is
 visually impaired, or displayed as text using angle brackets, quotes, and some
@@ -126,78 +133,56 @@ itself isn't just easier for the computer to work with: it's essential, since as
 we said before, the computer can't ``see'' the views that we create for human
 beings.
 
-Turning one of those views back into a model is hard: parsing the textual
-representation of HTML takes thousands of lines of code, and doing OCR or speech
-recognition to translate the rendered page or its spoken equivalent can take
-millions.  What big idea number four implies, therefore, is that
-\emph{structured data is better than unstructured data}.  The tags and
-attributes in the textual representation of an HTML page are there because
-without it, the computer can't tell whether something is in italics because it's
-being emphasized or because it's the title of a book.  To borrow an example from
-Jon Udell, a PDF with a cartoon whose caption says, ``The knitting circle meets
-on the second Tuesday of every month'' is a lot easier for human beings to
-understand than a blob of iCal-formatted text, but the second is much easier for
-the computer.
+Turning a view back into a model is hard: parsing the textual representation of
+HTML takes thousands of lines of code, and doing OCR or speech recognition to
+translate the rendered page or its spoken equivalent can take millions.  What
+this idea implies, therefore, is that \emph{structured data is better than
+  unstructured data}.  The tags and attributes in the textual representation of
+an HTML page are there because without it, the computer can't tell whether
+something is in italics because it's being emphasized or because it's the title
+of a book.  To borrow an example from Jon Udell, a PDF with a cartoon whose
+caption says, ``The knitting circle meets on the second Tuesday of every month''
+is a lot easier for human beings to understand than a calendar entry in iCal
+format, but the second is much easier for the computer.
 
 \rulemajor{Paranoia makes us productive.}
 
-We said earlier that we only want to care about how something is implemented
-when things go wrong or when we need to improve its performance.  Big idea
-number five is about things going wrong, and can be summed up by saying that
-\emph{paranoia makes us productive}.  The best way---in fact, the only way---to
-improve productivity is to improve quality, and this starts before we write the
-first line of code.  ``I want to count all the stars in this photograph'' is
-easy to say, but what does it actually \emph{mean}?  What constitutes a star?
-When do you decide that a lumpy blob of pixels is two stars rather than one, or
-three instead of two?  Every program embodies decisions about questions like
-these, even if you don't realize that there was a question and that you made a
-choice.  The sooner we worry about this, the less time we'll waste building the
-wrong thing.
+Even simple software can go wrong in a bewildering variety of ways.  Since
+fixing something after it breaks takes more time than getting it right in the
+first place, experienced programmers have learned the value of investing time up
+front in figuring out exactly what they're trying to accomplish, and in ensuring
+that what they've built meets those requirements.  ``I want to count the stars
+in this photograph'' is easy to say, but what does it actually mean?  What
+constitutes a star?  When do you decide that a lumpy blob of pixels is two stars
+rather than one, or three instead of two?  Every program embodies decisions
+about questions like these, even if you don't realize that there was a question
+and that you made a choice.
+
+The sooner these decisions are made explicit and the earlier they're checked,
+the less time is wasted.  Recent research shows that fine-grained
+development---i.e., interleaving short bursts of coding and testing---is more
+effective than working in larger chunks \cite{Fucc2017}, since the objectives
+and implementation of the code are fresh in the programmer's mind while testing.
 
 Of course, we don't stop worrying once we've typed our code in.  We check that
 data is formatted properly to protect ourselves against ``garbage in, garbage
-out''.  We put checks in our code to make sure that parameters are sensible, data
-structures consistent, files aren't empty, and so on.  And we write tests, and
-use a build system, to catch errors as soon as possible.  This might feel like
-it's slowing us down at first, but study after study has shown that it works.
-
-One of the best ways to apply this principle, by the way, is to automate
-everything.  As Alfred North Whitehead said, ``Civilization advances by
-extending the number of important operations which we can perform without
-thinking about them.''  We don't just write programs because we want to do
-things quickly: we write them because we don't want to do some things ever
-again.  Version control systems keep track of our work for us; spreadsheets
-update graphs and summary statistics whenever a single value changes, and so on.
-Every time we automate a task, we reduce the chances of getting it wrong the
-next time, and have more time to think about things that machines \emph{can't}
-do for us.  And it's not just a one-time saving: if we automate things well,
-that extra time is ours over and over again.
-
-\rulemajor{We can't break what we don't change.}
-
-FIXME: rule 6 about immutable data structures being easier to understand; also
-refer to library re-use (code is just data); include discussion of
-pass-by-reference and pass-by-value.
-
-\rulemajor{Keep your bits close, and your frequently-used bits closer.}
-
-FIXME: rule 7 about locality and caching; refer back to pass-by-reference for
-the web.
+out''.  We put checks in our code to make sure that parameters are sensible,
+data structures consistent, files aren't empty, and so on.  This is called
+\emph{defensive programming}, and one of the signs of a mature programmer is
+a high density of assertions and other self-checks in her code.
 
 \rulemajor{Better algorithms are better than better hardware.}
 
-Big idea number eight is that we can think about how fast the algorithms
-embodied in programs are, and that better algorithms are better than better
-hardware.  One of the greatest mathematical advances of the Twentieth Century
-was the idea of \emph{algorithmic complexity}, and its practical implications
-shape everything we do with computers, whether we realize it or not.  The basic
-idea is that we can estimate how many operations an algorithm will do, or how
-much memory it requires, as a function of the size of the problem we're trying
-to solve.  It turns out that some algorithms slow down gently as their inputs
-get larger, while others slow down so much that even if the whole universe was
-one large computer, it couldn't solve any problem big enough to be interesting.
-Faster chips help---a lot---but the real key to speed is to focus on what we're
-doing, not what we're doing it with.
+One of the greatest mathematical advances of the Twentieth Century was the idea
+of \emph{algorithmic complexity}, and its practical implications shape
+everything we do with computers, whether we realize it or not.  The basic idea
+is that we can estimate how the running time or memory requirements of an
+algorithm grow as a function of the size of the problem we're trying to solve
+\cite{Cone2016}.  while some algorithms slow down gently as their inputs get
+larger, others slow down so much that even if the whole universe was one large
+computer, it couldn't solve any problem big enough to be interesting.  Faster
+chips help---a lot---but the real key to speed is to focus on how we're doing
+things, not what we're doing it with.
 
 But algorithms are nothing without data structures to operate on, just as data
 structures are pointless without algorithms to manipulate them.  That's why the
@@ -206,25 +191,45 @@ and so on.  Knowing the syntax of this language or the API of that library is
 useful, but good programmers know their data structures and algorithms the way a
 plumber knows pipes or a musician knows scales.
 
-FIXME: trade space for time for precision (e.g., hashing)
+\rulemajor{Keep your bits close, and your frequently-used bits closer.}
 
-\rulemajor{ANOTHER}
+FIXME: rule about locality and caching; refer back to pass-by-reference for the
+web.  In particular, they know how to trade space for time and vice versa
+\cite{Bent1982}.
+  
+\rulemajor{We can't break what we don't change.}
 
-FIXME: need a ninth rule.
+FIXME: rule 6 about immutable data structures being easier to understand; also
+refer to library re-use (code is just data); include discussion of
+pass-by-reference and pass-by-value.
+
+Applies to workflows
+
+One of the most effective ways to apply this principle is to automate
+everything.  As Whitehead said \cite{Whit1958}, ``Civilization advances by
+extending the number of important operations which we can perform without
+thinking about them.''  Every time we automate a task, such as recompiling
+software or re-running a data analysis when new input files appear, we reduce
+the chances of getting it wrong the next time, and have more time to think about
+things that machines \emph{can't} do for us.
+
+\rulemajor{The street finds its own uses for things.}
+
+The second rule is that every decision about what data to collect, who to share
+it with, how to interpret it, and how to use those interpretations necessarily
+and unavoidably furthers someone's interests.
+
+FIXME: CITE Gibson ``Burning Chrome'' \cite{Gibs1987}
 
 \rulemajor{The tool shapes the hand.}
 
 Our final rule is something that artisans have known for thousands of years:
 \emph{the tool shapes the hand}.  Building software changes how you use
 software; making computers do new things changes your understanding of what
-computers can do.  That's why any course about computational thinking should ask
-you to write software: however frustrating it may sometimes be, it's the only
-way to teach you what software can do.
-
-\section*{Conclusion}
-
-An early version of this paper was inspired by Jon Udell's ``Seven Ways to Think
-Like the Web'' \cite{Udel2011}.
+computers can do.  That's why the only way to learn how to think like a
+programmer is to do some programming: however frustrating it may sometimes be,
+it's the only way to learn what software can do for you, and how it can change
+your view of everything else you do.
 
 \bibliography{rules}
 
