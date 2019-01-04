@@ -16,6 +16,11 @@ pdf :
 	${LATEX} ${STEM}
 	${LATEX} ${STEM}
 
+## count      : count the number of rules.
+count :
+	@fgrep rulemajor rules.tex | grep -v newcommand
+	@fgrep rulemajor rules.tex | grep -v newcommand | wc -l
+
 ## clean      : clean up junk files.
 clean :
 	@rm -f *~ *.aux *.bak *.bbl *.blg *.dvi *.log *.out

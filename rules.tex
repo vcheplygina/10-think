@@ -89,12 +89,14 @@ may seem obvious, but thirty years after Pea first called it the ``superbug'',
 believing that the computer will somehow understand intent remains a common
 error \cite{Pea1986}.
 
-\rulemajor{Programming is about creating and composing abstractions.}
+\rulemajor{Nothing in programming makes sense except in the light of human psychology.}
 
-Computers don't have to understand instructions in order to execute them, but we
-need to understand them in order to create them (and fix them afterward).  Our
-brains can only keep track of a handful of things at once \cite{Mill1956}, we
-have to decompose complexity into chunks, then think in terms of those chunks.
+This rule is a play on Theodosius Dobzhansky's famous dictum that nothing in
+biology makes sense except in light of evolution \cite{Dobz1973}.  Computers
+don't have to understand instructions in order to execute them, but we need to
+understand them in order to create them (and fix them afterward).  Our brains
+can only keep track of a handful of things at once \cite{Mill1956}, we have to
+decompose complexity into chunks, then think in terms of those chunks.
 
 One key to making abstraction work is to separate \emph{interface} and
 \emph{implementation}.  An interface is what something knows how to do: the
@@ -116,7 +118,7 @@ for programmers to work with them.
 
 \rulemajor{Models are for computers, and views are for people.}
 
-Another implication of the abstraction rule is important enough to be its own
+One implication of our need for abstractions is important enough to be its own
 rule: create models for computers and views for people.  A \emph{model} is a
 representation of something that is easy for a computer to operate on; a
 \emph{view} is a way of displaying it that human beings can understand.  For
@@ -188,38 +190,73 @@ But algorithms are nothing without data structures to operate on, just as data
 structures are pointless without algorithms to manipulate them.  That's why the
 two topics are usually taught together: arrays with loops, trees with recursion,
 and so on.  Knowing the syntax of this language or the API of that library is
-useful, but good programmers know their data structures and algorithms the way a
-plumber knows pipes or a musician knows scales.
+useful, but good programmers know key data structures and algorithms the way a
+musician knows scales.
 
-\rulemajor{Keep your bits close, and your frequently-used bits closer.}
-
-FIXME: rule about locality and caching; refer back to pass-by-reference for the
-web.  In particular, they know how to trade space for time and vice versa
-\cite{Bent1982}.
-  
 \rulemajor{We can't break what we don't change.}
 
-FIXME: rule 6 about immutable data structures being easier to understand; also
-refer to library re-use (code is just data); include discussion of
-pass-by-reference and pass-by-value.
+Programmers use the words \emph{mutable} and \emph{immutable} to refer to things
+that can be modified after creation and things that can't.  Things that are
+immutable are easier to understand: once a data structure has been defined,
+nothing can change it, so you don't have to re-trace the history of a program's
+execution in order to understand it.
 
-Applies to workflows
+However, immutable data can be less efficient than mutable data: it's very
+expensive to make a copy of an entire multi-megabyte image just because we want
+to change one pixel.  Older programming languages like C and Fortran allowed
+most data to be mutable because computer time was expensive Other languages like
+R and MATLAB do a lot of work to re-use data without changing it when they can,
+and only alter the data that absolutely must be changed, and more modern
+languages (and programming styles in older languages) strongly encourage
+programmers to treat everything as immutable.
 
-One of the most effective ways to apply this principle is to automate
-everything.  As Whitehead said \cite{Whit1958}, ``Civilization advances by
-extending the number of important operations which we can perform without
-thinking about them.''  Every time we automate a task, such as recompiling
-software or re-running a data analysis when new input files appear, we reduce
-the chances of getting it wrong the next time, and have more time to think about
-things that machines \emph{can't} do for us.
+This rule applies to software as well (after all, our first rule was that
+software is just another kind of data).  Experienced programmers write very
+little software from scratch.  Instead, they re-use libraries that others have
+developed.
+
+Another realization of this rule is automating workflows.  As Whitehead said
+\cite{Whit1958}, ``Civilization advances by extending the number of important
+operations which we can perform without thinking about them.''  Every time we
+automate a task, such as recompiling software or re-running a data analysis when
+a new input file appears, we reduce the chances of getting it wrong the next
+time, and have more time to think about things that machines \emph{can't} do for
+us.
+
+\rulemajor{You are not your users.}
+
+``It's obvious,'' says the programmer. ``You just{\ldots}'' What follows is
+often incomprehensible, because programmers frequently suffer from \emph{expert
+  blind spot} \cite{Nath2003}.  An interface that makes sense to the developer
+who built it may be frustrating and possibly dangerous in the hands of other
+people---including other programmers.  Even if it's comprehensible, it may not
+be useful, because the developer may not understand the domain well enough to
+know what should be easy to do and what doesn't matter.  Being able to put
+herself in someone else's place and see the world through their eyes is one of
+the hallmarks of a good programmer.
 
 \rulemajor{The street finds its own uses for things.}
 
-The second rule is that every decision about what data to collect, who to share
-it with, how to interpret it, and how to use those interpretations necessarily
-and unavoidably furthers someone's interests.
+This rule comes from William Gibson's short story ``Burning Chrome''
+\cite{Gibs1987}.  If the last few years have taught programmers anything, it's
+that every decision about what data to collect, who to share it with, how to
+interpret it, and how to use those interpretations furthers someone's interests.
+The same tools that are used to recommend music can be used to generate targeted
+political misinformation; the monitoring done to customize online lessons can be
+combined with crime data in ways that reinforce the biases already present in
+both, and the odds are that the people using and abusing data in these ways will
+never be held responsible for the decisions based on their analyses.  Like
+security, accountability cannot be added as an afterthought.
 
-FIXME: CITE Gibson ``Burning Chrome'' \cite{Gibs1987}
+But this rule is not entirely dire.  The biggest change in programming over the
+last twenty years has been the rise of question-and-answer sites like Stack
+Overflow.  Many programmers consult it hourly, particularly when they are
+working in a new domain or struggling with something written by someone who
+ignored our previous rule.  While developers usually don't just copy and paste,
+almost all borrow and modify, often in ways that the original question and
+answer could not have anticipated.  Knowing how to frame a good question and
+recognize a useful answer is therefore now as important to software development
+as it is to research.
 
 \rulemajor{The tool shapes the hand.}
 
