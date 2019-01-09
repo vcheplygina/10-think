@@ -1,0 +1,43 @@
+1.  Programs are data.
+    -   Foundation of all higher-level programming.
+    -   Treat program text as data (compilation, model checking, etc.) matters mostly to people writing programming languages.
+    -   Treat program instructions in memory as data (higher-order functions, lazy evaluation, etc.) is the heart of advanced programming.
+2.  Computers don't understand anything.
+    -   Belief that they do is the "superbug" (Pea).
+    -   Bits plus (self-imposed) rules about how to manipulate them give the illusion of meaning.
+    -	Increasingly important for us to be mindful that interpretations all have viewpoint (algorithmic bias).
+3.  Programming is about creating and combining abstractions.
+    -   Computers only need to execute programs; human beings need to understand them.
+    -   7 +/- 2 means we have to chunk things.
+    -   Good programmers create a bespoke language within which the solution to their problem is straightforward.
+4.  Every redundancy in software is an abstraction trying to be born.
+    -   Programming evolves by noticing things that we're doing repeatedly and providing support for them.
+    -   E.g., loops become array notation or higher-order functions.
+    -   The tool shapes the hand: every time we make some things easier we make other things harder.
+    -   Expert blind spot: novices frequently don't understand the patterns (or their purpose)
+5.  Explicit is good for computers, implicit is good for humans.
+    -   What's easy for us to write and read is difficult for computers to enstructure (if that's a word).
+    -   What computers need is painful for us to write and understand (HTML, Dublin Core).
+    -   Separate models from views.
+6.  Paranoia makes us productive.
+    -   The best way to improve productivity is to improve quality (Boehm).
+    -   The sooner we check things the fresher they are in our minds (development) or the less damage they've done (runtime).
+    -	Feedback loops at several scales.
+    -   The former is a must for scientific work (reproducibility), the latter is hard (we don't know the right answer).
+8.  Things that don't change are easier to understand than things that do.
+    -   Immutable data is easier to understand than mutable (don't have to trace history mentally to understand state).
+    -   Automation is a special case of this rule (immutable workflow).
+    -   Running theme in evolution of programming is slowly making more things appear immutable, even if they're actually mutable.
+7.  Better algorithms are better than better hardware.
+    -   Algorithmic complexity theory is one of the great mathematical inventions of the 20th Centry.
+    -   Some kinds of problems are invulnerable to faster hardware.
+    -   Algorithms and data structures go hand-in-hand.
+    -   Note that making workflow explicit ties to this: workflow is another word for algorithm, and programming is about turning verbs into nouns.
+9.  Distributed is different.
+    -   Have to think about data location (and caching), actual time, and partial failure.
+    -   All attempts to make distributed seem like local have failed in the large.
+    -   The future of programming is about how we deal with this (and that statement has been true since the 1980s).
+10. Privacy, security, and fairness can't be added after the fact.
+    -   Referring back to rule 2, the last few years have shown that collecting and interpreting data is never neutral.
+    -   Attempts to plaster them on top of existing systems have repeatedly failed.
+    -   The other "future of programming" is taking digital health as seriously as physical health.

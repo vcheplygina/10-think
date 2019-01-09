@@ -22,25 +22,23 @@
 
 \section*{Abstract}
 
-We describe ten characteristic ways in which programmers view the world that are
-often useful in other contexts.
+We describe ten ways programmers view the world that are often useful in other
+contexts.
 
 \section*{Author Summary}
 
-The term ``computational thinking'' is widely used, but there is little
-consensus on what it actually encompasses.  Experienced programmers, on the
-other hand, tend to think about problems in similar ways, and understanding
-these ways can help people in other domains see their own fields with fresh
-eyes.
+Experienced programmers tend to think about problems in ways inspired by their
+experience of programming.  Understanding those ways of seeing the world can
+help people in other domains see their own fields with fresh eyes.
 
 \section*{Introduction}
 
 The term ``computational thinking'' has been widely used since \cite{Wing2006}
-introduced it more than a decade ago.  However, there is little consensus on
-what it actually encompasses.  Experienced programmers, on the other hand,
-tend to think about problems in similar ways, and understanding those ways
-can help people in other domains---such as scientific research---see their
-own fields with fresh eyes.
+introduced it more than a decade ago, but there is little consensus on what it
+actually means.  Experienced programmers do, however, tend to think about
+problems in ways inspired by their experience of programming.  Understanding
+those ways of seeing the world can help people in other domains see their own
+fields with fresh eyes.
 
 \subsection*{Acknowledgments}
 
@@ -49,30 +47,21 @@ Think Like the Web'' \cite{Udel2011}.
 
 \rulemajor{Programs are data.}
 
-First, and most importantly, everything a computer works with is just 1's and
-0's.  From email messages to pictures of far-off galaxies, it's all just bits.
+The key insight that all of modern computing is built on is that programs are
+just another kind of data.  Source code is text, no different from a thesis or a
+poem; it can be searched with the same tools used to search other kinds of
+documents, and new text (such as documentation) can be created from old.
 
-This seems obvious, but one of its implications is that programs are just
-another kind of data.  This is the key insight that all of modern computing is
-built on.  The source code for a program is just a set of text files, no
-different from a thesis or a poem.  Once that text is loaded into memory, the
-instructions are just more bytes, and can be stored in data structures, passed
-around, or altered.  Almost all advanced programming techniques, from callbacks
-in JavaScript to decorators in Python and lazy evaluation in R, depend on this
-fact in one way or another.
+More importantly, once a program is loaded into memory, the instructions are
+just more bytes, and can be stored in data structures, passed around, or
+altered.  Almost all advanced programming techniques depend on this fact in one
+way or another, from function pointers in C and callbacks in JavaScript to
+decorators in Python and lazy evaluation in R.
 
-\rulemajor{Data must be interpreted.}
+\rulemajor{Computers don't understand anything.}
 
-The complement to the first rule is that data doesn't mean anything on its
-own---it has to be interpreted.  The bits 01100100011000010111100001100001 are
-simultaneously the word ``data'', the integer 1,684,108,385, the floating-point
-number 1.6635613602263159e+22, a bluish-gray pixel that's slightly transparent,
-a medium-loud sound sample with slightly higher volume in the left channel, and
-an instruction to multiply the value on the top of the stack by the value
-beneath it and store the result in a particular location in memory.
-
-A corollary is that machines don't understand: they only obey.  If you look at
-this image, you see the word ``data'':
+Computers don't understand: they only obey instructions that make them appear
+to.  If you look at this image, you see the word ``data'':
 
 \includegraphics[width=5.0cm]{data.png}
 
@@ -89,14 +78,15 @@ may seem obvious, but thirty years after Pea first called it the ``superbug'',
 believing that the computer will somehow understand intent remains a common
 error \cite{Pea1986}.
 
-\rulemajor{Nothing in programming makes sense except in the light of human psychology.}
+\rulemajor{Programming is about creating and combining abstractions.}
 
-This rule is a play on Theodosius Dobzhansky's famous dictum that nothing in
-biology makes sense except in light of evolution \cite{Dobz1973}.  Computers
-don't have to understand instructions in order to execute them, but we need to
-understand them in order to create them (and fix them afterward).  Our brains
-can only keep track of a handful of things at once \cite{Mill1956}, we have to
-decompose complexity into chunks, then think in terms of those chunks.
+Computers don't have to understand instructions in order to execute them, but we
+need to understand them in order to create them (and fix them afterward).  Our
+brains can only keep track of a handful of things at once \cite{Mill1956}, we
+have to decompose complexity into chunks, then think in terms of those chunks.
+The computing version of Dobzhansky's famous dictum that nothing in biology
+makes sense except in light of evolution \cite{Dobz1973} is therefore, ``Nothing
+in software development makes sense except in light of human psychology.''
 
 One key to making abstraction work is to separate \emph{interface} and
 \emph{implementation}.  An interface is what something knows how to do: the
@@ -107,23 +97,37 @@ do our work well, we shouldn't have to care about the implementation until
 something goes wrong or we need to improve its performance.  ``Spare me the
 details'' may be rude in real life, but it's essential in programming.
 
-One useful rule of thumb is that every pattern is an abstraction trying to be
-born.  Does your program repeatedly search an array to find the largest and
-smallest values?  Write a function called \texttt{bounds}.  Does it repeatedly
-search arbitrary data structures to find values that meet certain criteria?
-Write a generator that returns values one by one and another function that
-filters those according to some criteria.  The history of programming is in
-large part the history of people noticing patterns and then making it easier
-for programmers to work with them.
+The downside of creating abstractions is that they can lead to expert blind spot
+\cite{Nath2003}.  Once they have internalized patterns, experts are often unable
+to remember that they ever saw the world any other way, or to see the world
+afresh through novice eyes.  As a result, they are prone to say, ``It's
+obvious,'' and then follow it with incomprehensible jargon.
 
-\rulemajor{Models are for computers, and views are for people.}
+\rulemajor{Every redundancy in software is an abstraction trying to be born.}
+
+The history of programming is in large part the history of people noticing
+patterns and then making it easier for programmers to work with them.  Does your
+program repeatedly search an array to find the largest and smallest values?
+Write a function called \texttt{bounds}.  Does it repeatedly search arbitrary
+data structures to find values that meet certain criteria?  Write a generator
+that returns values one by one and another function that filters those according
+to some criteria.
+
+This process is not neutral.  As the saying goes, the tool shapes the hand:
+every time we make some things easier we make other things relatively harder, so
+every abstraction we support guides people away from doing things in other ways.
+
+\rulemajor{Explicit is good for computers, implicit is good for humans.}
 
 One implication of our need for abstractions is important enough to be its own
-rule: create models for computers and views for people.  A \emph{model} is a
-representation of something that is easy for a computer to operate on; a
-\emph{view} is a way of displaying it that human beings can understand.  For
-example, an HTML page consists of elements that have attributes and that contain
-other elements or blocks of text:
+rule: we should make things explicit for computers, but leave room for inference
+for people.  In jargon terms, this means creating models for computers and views
+for human beings.
+
+A \emph{model} is a representation of something that is easy for a computer to
+operate on; a \emph{view} is a way of displaying it that human beings can
+understand.  For example, an HTML page consists of elements that have attributes
+and that contain other elements or blocks of text:
 
 \includegraphics[width=10.0cm]{modelview.png}
 
@@ -137,15 +141,14 @@ beings.
 
 Turning a view back into a model is hard: parsing the textual representation of
 HTML takes thousands of lines of code, and doing OCR or speech recognition to
-translate the rendered page or its spoken equivalent can take millions.  What
-this idea implies, therefore, is that \emph{structured data is better than
-  unstructured data}.  The tags and attributes in the textual representation of
-an HTML page are there because without it, the computer can't tell whether
-something is in italics because it's being emphasized or because it's the title
-of a book.  To borrow an example from Jon Udell, a PDF with a cartoon whose
-caption says, ``The knitting circle meets on the second Tuesday of every month''
-is a lot easier for human beings to understand than a calendar entry in iCal
-format, but the second is much easier for the computer.
+translate the rendered page or its spoken equivalent can take millions.  The
+tags and attributes in the textual representation of an HTML page are there
+because without it, the computer can't tell whether something is in italics
+because it's being emphasized or because it's the title of a book.  To borrow an
+example from Jon Udell, a PDF with a cartoon whose caption says, ``The knitting
+circle meets on the second Tuesday of every month'' is a lot easier for human
+beings to understand than a calendar entry in iCal format, but the second is
+much easier for the computer.
 
 \rulemajor{Paranoia makes us productive.}
 
@@ -173,18 +176,45 @@ data structures consistent, files aren't empty, and so on.  This is called
 \emph{defensive programming}, and one of the signs of a mature programmer is
 a high density of assertions and other self-checks in her code.
 
+It is more difficult to do this in research software than in most commercial
+software because (almost by definition) we don't know what the right answer
+\emph{is} in research software, which makes it difficult to check that we're
+getting it.
+
+\rulemajor{Things that don't change are easier to understand than things that do.}
+
+Programmers use the words \emph{mutable} and \emph{immutable} to refer to things
+that can be modified after they are created and things that can't.  Things that
+are immutable are easier to understand because you don't have to re-trace the
+history of a program's execution in order to understand its state.  However,
+immutable data can be less efficient than mutable data: it's very expensive to
+make a copy of an entire multi-megabyte image just because we want to change one
+pixel.
+
+Older programming languages like C and Fortran allowed most data to be mutable
+because computer time was expensive.  Newer languages either make data immutable
+or automatically copy data when asked to make changes in order to give the
+appearance of immutability.
+
+One special case of this rule is automating workflows.  As Whitehead said
+\cite{Whit1958}, ``Civilization advances by extending the number of important
+operations which we can perform without thinking about them.''  Every time we
+automate a task, such as recompiling software or re-running a data analysis when
+a new input file appears, we reduce the chances of getting it wrong the next
+time, and have more time to think about things that machines \emph{can't} do for
+us.
+
 \rulemajor{Better algorithms are better than better hardware.}
 
 One of the greatest mathematical advances of the Twentieth Century was the idea
 of \emph{algorithmic complexity}, and its practical implications shape
-everything we do with computers, whether we realize it or not.  The basic idea
-is that we can estimate how the running time or memory requirements of an
-algorithm grow as a function of the size of the problem we're trying to solve
-\cite{Cone2016}.  while some algorithms slow down gently as their inputs get
-larger, others slow down so much that even if the whole universe was one large
-computer, it couldn't solve any problem big enough to be interesting.  Faster
-chips help---a lot---but the real key to speed is to focus on how we're doing
-things, not what we're doing it with.
+everything we do with computers.  The key idea is that the running time or
+memory requirements of an algorithm grow in different ways as the problem we are
+trying to solve gets bitter \cite{Cone2016}.  Some algorithms slow down gently
+as their inputs get larger, but others slow down so much that even if the whole
+universe was one large computer, it couldn't solve any problem big enough to be
+interesting.  Faster chips help---a lot---but the real key to speed is to focus
+on how we're doing things, not what we're doing it with.
 
 But algorithms are nothing without data structures to operate on, just as data
 structures are pointless without algorithms to manipulate them.  That's why the
@@ -193,80 +223,39 @@ and so on.  Knowing the syntax of this language or the API of that library is
 useful, but good programmers know key data structures and algorithms the way a
 musician knows scales.
 
-\rulemajor{We can't break what we don't change.}
+\rulemajor{Distributed is different.}
 
-Programmers use the words \emph{mutable} and \emph{immutable} to refer to things
-that can be modified after creation and things that can't.  Things that are
-immutable are easier to understand: once a data structure has been defined,
-nothing can change it, so you don't have to re-trace the history of a program's
-execution in order to understand it.
+Distributed computing is intrinsically different from running programs on a
+single machine \cite{Wald1994}.  The most important differences are data sharing
+and partial failure.  On a single computer, we can usually pretend that nobody
+else is modifying the data while we're trying to use it.  In a distributed
+system where we are collating data from many sources, that simplification breaks
+down, and we have to worry from the start about whether someone might add
+records to the database between the time we ask how many there are and the time
+we start processing them.
 
-However, immutable data can be less efficient than mutable data: it's very
-expensive to make a copy of an entire multi-megabyte image just because we want
-to change one pixel.  Older programming languages like C and Fortran allowed
-most data to be mutable because computer time was expensive Other languages like
-R and MATLAB do a lot of work to re-use data without changing it when they can,
-and only alter the data that absolutely must be changed, and more modern
-languages (and programming styles in older languages) strongly encourage
-programmers to treat everything as immutable.
+Similarly, we can pretend that a program running on a single computer either
+works or doesn't. When that same program is accessing remote resources, we have
+to worry about whether a long delay means that something has failed, or whether
+it's just being slow.  Many attempts have been made to paper over these
+differences, but all have failed in the large.  As a result, the future of
+programming is about how we deal with this---a statement that has been true
+since the 1980s
 
-This rule applies to software as well (after all, our first rule was that
-software is just another kind of data).  Experienced programmers write very
-little software from scratch.  Instead, they re-use libraries that others have
-developed.
+\rulemajor{Privacy, security, fairness, and responsibility can't be added after the fact.}
 
-Another realization of this rule is automating workflows.  As Whitehead said
-\cite{Whit1958}, ``Civilization advances by extending the number of important
-operations which we can perform without thinking about them.''  Every time we
-automate a task, such as recompiling software or re-running a data analysis when
-a new input file appears, we reduce the chances of getting it wrong the next
-time, and have more time to think about things that machines \emph{can't} do for
-us.
+Our final rule may be the most important of all.  As the last few years have
+shown, collecting and interpreting data is never a neutral activity: who we
+share data with, how we classify it, and most importantly, who gets to decide
+these things are all political decisions with ever-increasing real-world impact,
+and we are past the point where we can pretend otherwise.
 
-\rulemajor{You are not your users.}
-
-``It's obvious,'' says the programmer. ``You just{\ldots}'' What follows is
-often incomprehensible, because programmers frequently suffer from \emph{expert
-  blind spot} \cite{Nath2003}.  An interface that makes sense to the developer
-who built it may be frustrating and possibly dangerous in the hands of other
-people---including other programmers.  Even if it's comprehensible, it may not
-be useful, because the developer may not understand the domain well enough to
-know what should be easy to do and what doesn't matter.  Being able to put
-herself in someone else's place and see the world through their eyes is one of
-the hallmarks of a good programmer.
-
-\rulemajor{The street finds its own uses for things.}
-
-This rule comes from William Gibson's short story ``Burning Chrome''
-\cite{Gibs1987}.  If the last few years have taught programmers anything, it's
-that every decision about what data to collect, who to share it with, how to
-interpret it, and how to use those interpretations furthers someone's interests.
-The same tools that are used to recommend music can be used to generate targeted
-political misinformation; the monitoring done to customize online lessons can be
-combined with crime data in ways that reinforce the biases already present in
-both, and the odds are that the people using and abusing data in these ways will
-never be held responsible for the decisions based on their analyses.  Like
-security, accountability cannot be added as an afterthought.
-
-But this rule is not entirely dire.  The biggest change in programming over the
-last twenty years has been the rise of question-and-answer sites like Stack
-Overflow.  Many programmers consult it hourly, particularly when they are
-working in a new domain or struggling with something written by someone who
-ignored our previous rule.  While developers usually don't just copy and paste,
-almost all borrow and modify, often in ways that the original question and
-answer could not have anticipated.  Knowing how to frame a good question and
-recognize a useful answer is therefore now as important to software development
-as it is to research.
-
-\rulemajor{The tool shapes the hand.}
-
-Our final rule is something that artisans have known for thousands of years:
-\emph{the tool shapes the hand}.  Building software changes how you use
-software; making computers do new things changes your understanding of what
-computers can do.  That's why the only way to learn how to think like a
-programmer is to do some programming: however frustrating it may sometimes be,
-it's the only way to learn what software can do for you, and how it can change
-your view of everything else you do.
+Attempts to add privacy, security, and fairness to systems after they have been
+built and deployed have failed, just as attempts to hide the distributed nature
+of distributed systems have.  The other "future of programming" is therefore
+taking digital health as seriously as physical health, and making those
+responsible for it as accountable as those responsible for other aspects of our
+wellbeing.
 
 \bibliography{rules}
 
