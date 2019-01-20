@@ -22,23 +22,23 @@
 
 \section*{Abstract}
 
-We describe ten ways programmers view the world that are often useful in other
-contexts.
+We describe ten ways experienced programmers view the world that are often
+useful in other contexts.
 
 \section*{Author Summary}
 
-Experienced programmers tend to think about problems in ways inspired by their
-experience of programming.  Understanding those ways of seeing the world can
-help people in other domains see their own fields with fresh eyes.
+Experienced programmers often think about problems in ways inspired by their
+understanding of software and software development.  Understanding how can help
+people in other domains see their problems with fresh eyes.
 
 \section*{Introduction}
 
-The term ``computational thinking'' has been widely used since \cite{Wing2006}
-introduced it more than a decade ago, but there is little consensus on what it
-actually means.  Experienced programmers do, however, tend to think about
-problems in ways inspired by their experience of programming.  Understanding
-those ways of seeing the world can help people in other domains see their own
-fields with fresh eyes.
+Ever since \cite{Wing2006} introduced the term ``computational thinking'' in
+2006, computer scientists and educators have debated what exactly it means
+\cite{Denn2017}.  What isn't debated is the fact that experienced programmers
+tend to think about problems in ways inspired by their experience of
+programming.  This paper describes ten of those ways which may help people in
+other domains see their own problems with fresh eyes.
 
 \subsection*{Acknowledgments}
 
@@ -50,189 +50,159 @@ Think Like the Web'' \cite{Udel2011}.
 The key insight that all of modern computing is built on is that programs are
 just another kind of data.  Source code is text, no different from a thesis or a
 poem; it can be searched with the same tools used to search other kinds of
-documents, and new text (such as documentation) can be created from old.
+documents, and new text (such as documentation) can be generated from old.
 
-More importantly, once a program is loaded into memory, the instructions are
-just more bytes, and can be stored in data structures, passed around, or
-altered.  Almost all advanced programming techniques depend on this fact in one
-way or another, from function pointers in C and callbacks in JavaScript to
+More importantly, once a program is loaded into memory its instructions are just
+bytes, no different in principle or practice from those used to represent the
+pixels in an image or the numbers in a vector field.  Those blocks of
+instructions can be stored in data structures, passed to functions, or altered
+on the fly, just like other data.  Almost all advanced programming techniques
+depend on this fact, from function pointers in C and callbacks in JavaScript to
 decorators in Python and lazy evaluation in R.
 
 \rulemajor{Computers don't understand anything.}
 
 Computers don't understand: they only obey instructions that make them appear
-to.  If you look at this image, you see the word ``data'':
+to.  If a person looks at this image, they see the word ``data'':
 
 \includegraphics[width=5.0cm]{data.png}
 
+\noindent
 A machine doesn't; it doesn't even see four blobs of blue pixels on a gray
-background, because it doesn't ``see'' anything.  The computer stores this
-image, and a program, as bits in memory.  If those bits happen to correspond to
-instructions for the computer's CPU, and if those instructions happen to make up
-a program for detecting shapes in images and matching those shapes with letters
-in the alphabet, then the computer may very well output ``data'', but \emph{it
-  doesn't understand}.  Calling a variable ``temperature'' doesn't mean the
-computer will store a temperature in it---it would do exactly the same thing if
-the variable was called ``pressure'' or ``frankenstein'' or ``a7''.  Again, this
-may seem obvious, but thirty years after Pea first called it the ``superbug'',
-believing that the computer will somehow understand intent remains a common
-error \cite{Pea1986}.
+background, because it doesn't ``see'' anything.  Equally, calling a variable
+``temperature'' doesn't mean the computer will store a temperature in it---it
+would do exactly the same thing if the variable was called ``pressure'' or
+``frankenstein'' or ``a7''.  This may seem obvious once you have written a few
+programs, but thirty years after \cite{Pea1986} first called it the
+``superbug'', believing that the computer will somehow understand intent remains
+a common error.
 
 \rulemajor{Programming is about creating and combining abstractions.}
 
 Computers don't have to understand instructions in order to execute them, but we
-need to understand them in order to create them (and fix them afterward).  Our
-brains can only keep track of a handful of things at once \cite{Mill1956}, we
-have to decompose complexity into chunks, then think in terms of those chunks.
-The computing version of Dobzhansky's famous dictum that nothing in biology
-makes sense except in light of evolution \cite{Dobz1973} is therefore, ``Nothing
-in software development makes sense except in light of human psychology.''
+do in order to create them (and fix them afterward).  Since our working memory
+can only juggle a handful of things at once \cite{Mill1956}, we have to create
+abstractions so that our representations of problems will fit into hardware
+whose performance doubles over millions of years rather than every eighteen
+months.
 
-One key to making abstraction work is to separate \emph{interface} and
-\emph{implementation}.  An interface is what something knows how to do: the
-questions it can answer, or the operations it can carry out. Its implementation
-is how it does those things: what data it stores, what algorithms it uses, and
-so on.  There can be dozens of ways to implement a particular interface; if we
-do our work well, we shouldn't have to care about the implementation until
-something goes wrong or we need to improve its performance.  ``Spare me the
-details'' may be rude in real life, but it's essential in programming.
+The key to making workable abstractions is to separate ``what'' from ``how'', or
+in computing terms, to separate \emph{interface} and \emph{implementation}.  An
+interface is what something knows how to do; its implementation is how it does
+those things.  There can be dozens of different implementations of a single
+interface: if we do our work well, we shouldn't have to care about the
+differences between them until something goes wrong or we need to improve its
+performance.
 
-The downside of creating abstractions is that they can lead to expert blind spot
-\cite{Nath2003}.  Once they have internalized patterns, experts are often unable
+\rulemajor{Every redundancy in software is an abstraction trying to be born.}
+
+The history of programming is in part the history of people noticing patterns
+and then making it easier for programmers to use them.  Does your program
+repeatedly search an array to find the largest and smallest values?  Write a
+function called \texttt{bounds}.  Does it repeatedly search arbitrary data
+structures to find values that meet certain criteria?  Write a generator that
+returns values one by one and another function that filters those according to
+some criteria.
+
+The problem with eliminating redundancy is that it can make software denser,
+which in turn makes it harder for non-specialists to understand.  Like
+mathematics and modern art, it can take years of training for someone to reach
+the point where they can see how beautiful something is.
+
+The other problem with patterns is that they can lead to expert blind spot
+\cite{Nath2003}.  Once experts have internalized patterns, they are often unable
 to remember that they ever saw the world any other way, or to see the world
 afresh through novice eyes.  As a result, they are prone to say, ``It's
 obvious,'' and then follow it with incomprehensible jargon.
 
-\rulemajor{Every redundancy in software is an abstraction trying to be born.}
+\rulemajor{Create models for computers and views for human beings.}
 
-The history of programming is in large part the history of people noticing
-patterns and then making it easier for programmers to work with them.  Does your
-program repeatedly search an array to find the largest and smallest values?
-Write a function called \texttt{bounds}.  Does it repeatedly search arbitrary
-data structures to find values that meet certain criteria?  Write a generator
-that returns values one by one and another function that filters those according
-to some criteria.
-
-This process is not neutral.  As the saying goes, the tool shapes the hand:
-every time we make some things easier we make other things relatively harder, so
-every abstraction we support guides people away from doing things in other ways.
-
-\rulemajor{Explicit is good for computers, implicit is good for humans.}
-
-One implication of our need for abstractions is important enough to be its own
-rule: we should make things explicit for computers, but leave room for inference
-for people.  In jargon terms, this means creating models for computers and views
-for human beings.
-
-A \emph{model} is a representation of something that is easy for a computer to
-operate on; a \emph{view} is a way of displaying it that human beings can
-understand.  For example, an HTML page consists of elements that have attributes
-and that contain other elements or blocks of text:
+One consequence of the second and third rules is important enough to be a rule
+in its own right: we should create models for computers and views for human
+beings.  A \emph{model} is a precise, detailed representation of information
+that is easy for a computer to operate on; a \emph{view} is a way of displaying
+information that human beings can easily understand and interact with.  For
+example, an HTML page is represented in memory as a data structure containing
+nodes for elements like headings and paragraphs, which can in turn contain a mix
+of other nodes or text:
 
 \includegraphics[width=10.0cm]{modelview.png}
 
-That model can be rendered in a browser, turned into speech for someone who is
-visually impaired, or displayed as text using angle brackets, quotes, and some
-indentation.  None of these \emph{is} the model: they're all views that make the
-model's content accessible to human beings in different contexts.  The model
-itself isn't just easier for the computer to work with: it's essential, since as
-we said before, the computer can't ``see'' the views that we create for human
-beings.
+\noindent
+That model can be rendered in a browser, turned into speech, or displayed as
+text using angle brackets.  None of these \emph{is} the model: they're all views
+that make the information in the model comprehensible in different ways.
 
-Turning a view back into a model is hard: parsing the textual representation of
-HTML takes thousands of lines of code, and doing OCR or speech recognition to
-translate the rendered page or its spoken equivalent can take millions.  The
-tags and attributes in the textual representation of an HTML page are there
-because without it, the computer can't tell whether something is in italics
-because it's being emphasized or because it's the title of a book.  To borrow an
-example from Jon Udell, a PDF with a cartoon whose caption says, ``The knitting
-circle meets on the second Tuesday of every month'' is a lot easier for human
-beings to understand than a calendar entry in iCal format, but the second is
-much easier for the computer.
+Turning a model into a view is hard, but turning a view back into a model is
+harder.  For example, parsing the textual representation of HTML takes thousands
+of lines of code, but doing OCR or speech recognition to translate a rendered
+page or its spoken equivalent back into nodes and text can take millions.
+Ironically, the same programmers who insist on this separation in software they
+build for the rest of humanity have been remarkably resistant to the idea of
+adopting any kind of model-view separation in programming itself.
 
 \rulemajor{Paranoia makes us productive.}
 
-Even simple software can go wrong in a bewildering variety of ways.  Since
-fixing something after it breaks takes more time than getting it right in the
-first place, experienced programmers have learned the value of investing time up
-front in figuring out exactly what they're trying to accomplish, and in ensuring
-that what they've built meets those requirements.  ``I want to count the stars
-in this photograph'' is easy to say, but what does it actually mean?  What
-constitutes a star?  When do you decide that a lumpy blob of pixels is two stars
-rather than one, or three instead of two?  Every program embodies decisions
-about questions like these, even if you don't realize that there was a question
-and that you made a choice.
-
-The sooner these decisions are made explicit and the earlier they're checked,
-the less time is wasted.  Recent research shows that fine-grained
-development---i.e., interleaving short bursts of coding and testing---is more
-effective than working in larger chunks \cite{Fucc2017}, since the objectives
-and implementation of the code are fresh in the programmer's mind while testing.
+``I want to count the cells in this photograph'' is easy to say, but what does
+it actually mean?  What constitutes a cell?  When do you decide that a lumpy
+blob of pixels is two cells rather than one, or three instead of two?  Every
+program embodies decisions like these; the sooner these decisions are made
+explicit and the earlier they're checked, the more productive we will be.  The
+precise order of steps doesn't seem to matter: we can write tests, then write
+software to make those tests pass, or write the program first and then test it.
+What \emph{does} matter is alternating development and testing in short
+interleaved bursts \cite{Fucc2017}.
 
 Of course, we don't stop worrying once we've typed our code in.  We check that
 data is formatted properly to protect ourselves against ``garbage in, garbage
 out''.  We put checks in our code to make sure that parameters are sensible,
 data structures consistent, files aren't empty, and so on.  This is called
-\emph{defensive programming}, and one of the signs of a mature programmer is
-a high density of assertions and other self-checks in her code.
-
-It is more difficult to do this in research software than in most commercial
-software because (almost by definition) we don't know what the right answer
-\emph{is} in research software, which makes it difficult to check that we're
-getting it.
+\emph{defensive programming}, and one of the signs of a mature programmer is a
+high density of assertions and other self-checks in her code.  It is harder to
+do this in research software than in most commercial software because (almost by
+definition) we don't know what the right answer \emph{is} in research software,
+which makes it difficult to check that we're getting it.
 
 \rulemajor{Things that don't change are easier to understand than things that do.}
 
 Programmers use the words \emph{mutable} and \emph{immutable} to refer to things
-that can be modified after they are created and things that can't.  Things that
-are immutable are easier to understand because you don't have to re-trace the
-history of a program's execution in order to understand its state.  However,
-immutable data can be less efficient than mutable data: it's very expensive to
-make a copy of an entire multi-megabyte image just because we want to change one
-pixel.
+that can be modified after they are created and things that cannot.  Immutable
+things are easier to understand because you don't have to re-trace their history
+in order to understand their state.  However, immutable data can be less
+efficient than mutable data: for example, it's very expensive to make a copy of
+an entire multi-megabyte image just because we want to change one pixel.
 
 Older programming languages like C and Fortran allowed most data to be mutable
-because computer time was expensive.  Newer languages either make data immutable
-or automatically copy data when asked to make changes in order to give the
-appearance of immutability.
+because computer time was expensive.  This led to many hard-to-find bugs, so
+newer languages either make data immutable or automatically copy data when asked
+to make changes in order to give the appearance of immutability.
 
-One special case of this rule is automating workflows.  As Whitehead said
-\cite{Whit1958}, ``Civilization advances by extending the number of important
-operations which we can perform without thinking about them.''  Every time we
-automate a task, such as recompiling software or re-running a data analysis when
-a new input file appears, we reduce the chances of getting it wrong the next
-time, and have more time to think about things that machines \emph{can't} do for
-us.
+One special case of this rule is automating workflows.  As \cite{Whit1958} said,
+``Civilization advances by extending the number of important operations which we
+can perform without thinking about them.''  Every time we automate a
+task---i.e., make its steps immutable---we reduce the chances of getting it
+wrong the next time, and have more time to think about things that machines
+\emph{can't} do for us.
 
 \rulemajor{Better algorithms are better than better hardware.}
 
 One of the greatest mathematical advances of the Twentieth Century was the idea
-of \emph{algorithmic complexity}, and its practical implications shape
-everything we do with computers.  The key idea is that the running time or
-memory requirements of an algorithm grow in different ways as the problem we are
-trying to solve gets bitter \cite{Cone2016}.  Some algorithms slow down gently
-as their inputs get larger, but others slow down so much that even if the whole
-universe was one large computer, it couldn't solve any problem big enough to be
-interesting.  Faster chips help---a lot---but the real key to speed is to focus
-on how we're doing things, not what we're doing it with.
-
-But algorithms are nothing without data structures to operate on, just as data
-structures are pointless without algorithms to manipulate them.  That's why the
-two topics are usually taught together: arrays with loops, trees with recursion,
-and so on.  Knowing the syntax of this language or the API of that library is
-useful, but good programmers know key data structures and algorithms the way a
-musician knows scales.
+of \emph{algorithmic complexity}.  The key insight is that the running time or
+memory requirements of an algorithm grow in a predictable way as a function of
+the size of the problem we are trying to solve \cite{Cone2016}.  Some algorithms
+slow down gently as their inputs get larger, but others slow down so much that
+even if the whole universe was one large computer, it couldn't solve any
+interesting problem.  Faster chips are therefore very welcome, but the real key
+to speed is to focus on how we're doing things.
 
 \rulemajor{Distributed is different.}
 
-Distributed computing is intrinsically different from running programs on a
-single machine \cite{Wald1994}.  The most important differences are data sharing
-and partial failure.  On a single computer, we can usually pretend that nobody
-else is modifying the data while we're trying to use it.  In a distributed
-system where we are collating data from many sources, that simplification breaks
-down, and we have to worry from the start about whether someone might add
-records to the database between the time we ask how many there are and the time
-we start processing them.
+Distributed computing is intrinsically different from running a program on a
+single machine \cite{Wald1994}.  On a single computer, we can usually pretend
+that nobody else is modifying the data while we're trying to use it.  Once our
+data is distributed, that simplification breaks down, and we have to worry about
+things like someone else adding records to the database between the time we ask
+how many there are and the time we start processing them.
 
 Similarly, we can pretend that a program running on a single computer either
 works or doesn't. When that same program is accessing remote resources, we have
@@ -247,15 +217,22 @@ since the 1980s
 Our final rule may be the most important of all.  As the last few years have
 shown, collecting and interpreting data is never a neutral activity: who we
 share data with, how we classify it, and most importantly, who gets to decide
-these things are all political decisions with ever-increasing real-world impact,
-and we are past the point where we can pretend otherwise.
+these things are all political decisions with ever-increasing impact, and we are
+past the point where we can pretend otherwise.
 
 Attempts to add privacy, security, and fairness to systems after they have been
-built and deployed have failed, just as attempts to hide the distributed nature
-of distributed systems have.  The other "future of programming" is therefore
-taking digital health as seriously as physical health, and making those
-responsible for it as accountable as those responsible for other aspects of our
-wellbeing.
+built and deployed have repeatedly failed.  The other "future of programming" is
+therefore to take digital health as seriously as physical health, and to make
+those responsible for it as accountable as those responsible for other aspects
+of our wellbeing.
+
+\section*{Conclusion}
+
+Artisans have known for centuries that the tool shapes the hand.  If computers
+are tools for thinking with, then it shouldn't surprise us that writing software
+shapes the minds of those who do it.  The ten rules listed above are just a few
+reflections of this; we hope that exploring their application in other fields
+will inspire new and valuable insights.
 
 \bibliography{rules}
 
