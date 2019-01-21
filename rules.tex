@@ -33,17 +33,18 @@ people in other domains see their problems with fresh eyes.
 
 \section*{Introduction}
 
-Ever since \cite{Wing2006} introduced the term ``computational thinking'' in
-2006, computer scientists and educators have debated what exactly it means
-\cite{Denn2017}.  What isn't debated is the fact that experienced programmers
-tend to think about problems in ways inspired by their experience of
+Ever since Wing introduced the term ``computational thinking'' in 2006
+\cite{Wing2006}, computer scientists and educators have debated what exactly it
+means \cite{Denn2017}.  What isn't debated is the fact that experienced
+programmers tend to think about problems in ways inspired by their experience of
 programming.  This paper describes ten of those ways which may help people in
 other domains see their own problems with fresh eyes.
 
 \subsection*{Acknowledgments}
 
 An early version of this paper was inspired by Jon Udell's essay ``Seven Ways to
-Think Like the Web'' \cite{Udel2011}.
+Think Like the Web'' \cite{Udel2011}.  I am grateful to Neil Brown for feedback
+on early drafts.
 
 \rulemajor{Programs are data.}
 
@@ -74,24 +75,24 @@ background, because it doesn't ``see'' anything.  Equally, calling a variable
 would do exactly the same thing if the variable was called ``pressure'' or
 ``frankenstein'' or ``a7''.  This may seem obvious once you have written a few
 programs, but thirty years after \cite{Pea1986} first called it the
-``superbug'', believing that the computer will somehow understand intent remains
-a common error.
+``superbug'', it is still a common error to believe that the computer will
+somehow understand intent.
 
 \rulemajor{Programming is about creating and combining abstractions.}
 
 Computers don't have to understand instructions in order to execute them, but we
 do in order to create them (and fix them afterward).  Since our working memory
 can only juggle a handful of things at once \cite{Mill1956}, we have to create
-abstractions so that our representations of problems will fit into hardware
-whose performance doubles over millions of years rather than every eighteen
+abstractions so that our representations of problems will fit into brains whose
+performance doubles over thousands of generations rather than every eighteen
 months.
 
 The key to making workable abstractions is to separate ``what'' from ``how'', or
 in computing terms, to separate \emph{interface} and \emph{implementation}.  An
 interface is what something knows how to do; its implementation is how it does
-those things.  There can be dozens of different implementations of a single
-interface: if we do our work well, we shouldn't have to care about the
-differences between them until something goes wrong or we need to improve its
+those things.  Like the ubiquitous USB port, there can be dozens of different
+implementations of a single interface: if we do our work well, we don't have to
+care which we are using until something goes wrong or we need to improve its
 performance.
 
 \rulemajor{Every redundancy in software is an abstraction trying to be born.}
@@ -143,15 +144,15 @@ adopting any kind of model-view separation in programming itself.
 
 \rulemajor{Paranoia makes us productive.}
 
-``I want to count the cells in this photograph'' is easy to say, but what does
-it actually mean?  What constitutes a cell?  When do you decide that a lumpy
-blob of pixels is two cells rather than one, or three instead of two?  Every
-program embodies decisions like these; the sooner these decisions are made
-explicit and the earlier they're checked, the more productive we will be.  The
-precise order of steps doesn't seem to matter: we can write tests, then write
-software to make those tests pass, or write the program first and then test it.
-What \emph{does} matter is alternating development and testing in short
-interleaved bursts \cite{Fucc2017}.
+``I want to count the stars in this photograph'' is easy to say, but what does
+it actually mean?  How bright does a patch of pixels have to be to qualify as a
+star?  When do you decide that a lumpy blob is two stars rather than one, or
+three instead of two?  Every program embodies decisions like these; the sooner
+these decisions are made explicit and the earlier they're checked, the more
+productive we will be.  The precise order of steps doesn't seem to matter: we
+can write tests, then write software to make those tests pass, or write the
+program first and then test it.  What \emph{does} matter is alternating
+development and testing in short interleaved bursts \cite{Fucc2017}.
 
 Of course, we don't stop worrying once we've typed our code in.  We check that
 data is formatted properly to protect ourselves against ``garbage in, garbage
@@ -210,7 +211,7 @@ to worry about whether a long delay means that something has failed, or whether
 it's just being slow.  Many attempts have been made to paper over these
 differences, but all have failed in the large.  As a result, the future of
 programming is about how we deal with this---a statement that has been true
-since the 1980s
+since the 1980s.
 
 \rulemajor{Privacy, security, fairness, and responsibility can't be added after the fact.}
 

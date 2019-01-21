@@ -15,9 +15,9 @@ how can help people in other domains see their problems with fresh eyes.
 
 ## Introduction
 
-Ever since [@Wing2006] introduced the term "computational thinking" in
-2006, computer scientists and educators have debated what exactly it
-means [@Denn2017]. What isn't debated is the fact that experienced
+Ever since Wing introduced the term "computational thinking" in 2006
+[@Wing2006], computer scientists and educators have debated what exactly
+it means [@Denn2017]. What isn't debated is the fact that experienced
 programmers tend to think about problems in ways inspired by their
 experience of programming. This paper describes ten of those ways which
 may help people in other domains see their own problems with fresh eyes.
@@ -25,7 +25,8 @@ may help people in other domains see their own problems with fresh eyes.
 ### Acknowledgments
 
 An early version of this paper was inspired by Jon Udell's essay "Seven
-Ways to Think Like the Web" [@Udel2011].
+Ways to Think Like the Web" [@Udel2011]. I am grateful to Neil Brown for
+feedback on early drafts.
 
 ## 1. Programs are data.
 
@@ -49,7 +50,7 @@ lazy evaluation in R.
 Computers don't understand: they only obey instructions that make them
 appear to. If a person looks at this image, they see the word "data":
 
-![Data](data.png)
+![image](data.png)
 
 A machine doesn't; it doesn't even see four blobs of blue pixels on a
 gray background, because it doesn't "see" anything. Equally, calling a
@@ -57,8 +58,8 @@ variable "temperature" doesn't mean the computer will store a
 temperature in it---it would do exactly the same thing if the variable was
 called "pressure" or "frankenstein" or "a7". This may seem obvious once
 you have written a few programs, but thirty years after [@Pea1986] first
-called it the "superbug", believing that the computer will somehow
-understand intent remains a common error.
+called it the "superbug", it is still a common error to believe that the
+computer will somehow understand intent.
 
 ## 3. Programming is about creating and combining abstractions.
 
@@ -66,16 +67,16 @@ Computers don't have to understand instructions in order to execute
 them, but we do in order to create them (and fix them afterward). Since
 our working memory can only juggle a handful of things at once
 [@Mill1956], we have to create abstractions so that our representations
-of problems will fit into hardware whose performance doubles over
-millions of years rather than every eighteen months.
+of problems will fit into brains whose performance doubles over
+thousands of generations rather than every eighteen months.
 
 The key to making workable abstractions is to separate "what" from
 "how", or in computing terms, to separate *interface* and
 *implementation*. An interface is what something knows how to do; its
-implementation is how it does those things. There can be dozens of
-different implementations of a single interface: if we do our work well,
-we shouldn't have to care about the differences between them until
-something goes wrong or we need to improve its performance.
+implementation is how it does those things. Like the ubiquitous USB
+port, there can be dozens of different implementations of a single
+interface: if we do our work well, we don't have to care which we are
+using until something goes wrong or we need to improve its performance.
 
 ## 4. Every redundancy in software is an abstraction trying to be born.
 
@@ -110,7 +111,7 @@ interact with. For example, an HTML page is represented in memory as a
 data structure containing nodes for elements like headings and
 paragraphs, which can in turn contain a mix of other nodes or text:
 
-![Models and Views](modelview.png)
+![image](modelview.png)
 
 That model can be rendered in a browser, turned into speech, or
 displayed as text using angle brackets. None of these *is* the model:
@@ -128,16 +129,16 @@ separation in programming itself.
 
 ## 6. Paranoia makes us productive.
 
-"I want to count the cells in this photograph" is easy to say, but what
-does it actually mean? What constitutes a cell? When do you decide that
-a lumpy blob of pixels is two cells rather than one, or three instead of
-two? Every program embodies decisions like these; the sooner these
-decisions are made explicit and the earlier they're checked, the more
-productive we will be. The precise order of steps doesn't seem to
-matter: we can write tests, then write software to make those tests
-pass, or write the program first and then test it. What *does* matter is
-alternating development and testing in short interleaved bursts
-[@Fucc2017].
+"I want to count the stars in this photograph" is easy to say, but what
+does it actually mean? How bright does a patch of pixels have to be to
+qualify as a star? When do you decide that a lumpy blob is two stars
+rather than one, or three instead of two? Every program embodies
+decisions like these; the sooner these decisions are made explicit and
+the earlier they're checked, the more productive we will be. The precise
+order of steps doesn't seem to matter: we can write tests, then write
+software to make those tests pass, or write the program first and then
+test it. What *does* matter is alternating development and testing in
+short interleaved bursts [@Fucc2017].
 
 Of course, we don't stop worrying once we've typed our code in. We check
 that data is formatted properly to protect ourselves against "garbage
@@ -201,7 +202,7 @@ resources, we have to worry about whether a long delay means that
 something has failed, or whether it's just being slow. Many attempts
 have been made to paper over these differences, but all have failed in
 the large. As a result, the future of programming is about how we deal
-with this---a statement that has been true since the 1980s
+with this---a statement that has been true since the 1980s.
 
 ## 10. Privacy, security, fairness, and responsibility can't be added after the fact.
 
